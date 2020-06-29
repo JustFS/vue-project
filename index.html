@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+  <title>Vue Project</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="./assets/style/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <main id="app">
+      <HeaderComponent></HeaderComponent>
+      <router-view></router-view>
+    </main>
+  </div>
+
+
+  <script type="text/x-template" id="product-list">
+    <div>
+
+      <div class="filters">
+        <div>
+          <label for="search-element">Product name</label>
+          <input v-model="searchKey" class="form-control" id="search-element" required/>
+        </div>
+      </div>
+
+        <tbody>
+          <tr v-for="product in products">
+            <!-- // filter product à la place products -->
+            <td>
+              <router-link :to="{name: 'product', params: {product_id: product.id}}">{{ product.name }}</router-link>
+            </td>
+            <td>{{ product.description }}</td>
+            <td>
+              {{ product.price }}
+              <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </script>
+
+   
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="./assets/js/script.js" type="text/javascript" ></script>
+</body>
+
+
+
+</html>
