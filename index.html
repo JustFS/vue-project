@@ -13,39 +13,75 @@
 
 <body>
 
-  <div class="container">
-    <main id="app">
-      <HeaderComponent></HeaderComponent>
-      <router-view></router-view>
-    </main>
-  </div>
-
-
-  <script type="text/x-template" id="product-list">
-    <div>
-
-      <div class="filters">
-        <div>
-          <label for="search-element">Product name</label>
-          <input v-model="searchKey" class="form-control" id="search-element" required/>
-        </div>
+  <main id="app">
+    <header>
+      <div id="logo">
+        <router-link to="/">
+          <img src="./assets/img/wish-logo-800.png" alt="logo">
+        </router-link>
       </div>
 
-        <tbody>
-          <tr v-for="product in products">
-            <!-- // filter product à la place products -->
-            <td>
-              <router-link :to="{name: 'product', params: {product_id: product.id}}">{{ product.name }}</router-link>
-            </td>
-            <td>{{ product.description }}</td>
-            <td>
-              {{ product.price }}
-              <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <ul id="icons">
+        <li>
+          <router-link to="/">
+            <i class="fas fa-user"></i>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/wish-list">
+            <i class="fas fa-heart"></i>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/shopping-cart">
+            <i class="fas fa-shopping-cart"></i>
+          </router-link>
+        </li>
+      </ul>
+    </header>
+
+    <router-view></router-view>
+  </main>
+
+  <script type="text/x-template" id="home">
+    <div class="container">
+      <h1>Articles</h1>
+      <input type="search" placeholder="Rechercher..." v-model="searchKey">
+      <div>
+        <p v-if="searchKey && filterProduct.length >= 1 ">{{filterProduct.length}} resultat<span v-if="filterProduct.length >= 2">s</span>
+          <ul v-for="product in filterProduct">
+            {{product.description}}
+          </ul>
+        </p>
+
+        <p v-if="!searchKey && filterProduct.length == 0">
+          <ul v-for="product in products">
+            <li>{{product.description}}</li>
+            <p>{{product.id}}</p>
+          </ul>
+        </p>
+
+        <li v-if="filterProduct.length == 0 && searchKey" >
+          <h2>Sorry</h2>
+          <p>There seem to be no posts under your criteria</p>
+        </li>
+        <li v-if="filterProduct.length < 1 && searchKey">
+          <ul v-for="product in products">
+            <li>{{product.description}}</li>
+            <p>{{product.id}}</p>
+          </ul>
+        </li>
+      </div>
+
     </div>
+  </script>
+
+  <script type="text/x-template" id="wish-list">
+    <h1>Hello from wish list</h1>
+  </script>
+
+  <script type="text/x-template" id="shopping-cart">
+    <h1>Hello from cart</h1>
   </script>
 
    

@@ -12,64 +12,45 @@ const products = [
 ];
 
 
+
 // component 
-const List = {
-  template: '#product-list',
-  data: function () {
-    return {products: products, searchKey: ''};
+const Home = {
+  template: '#home',
+  name: 'Home',
+  data: function(){
+    return {products, searchKey: null}
   },
-  computed: {
-    // filteredProducts: function () {
-    //   return this.products.filter(function (product) {
-    //     return product.name.toLowerCase().indexOf(this.searchKey.toLowerCase()) !== -1
-    //   })
-    // }
+  
+    computed: {
+      filterProduct(){
+          return this.products.filter(result => {
+              const myRegex = new RegExp(this.searchKey, 'gi');
+              return (result.description.match(myRegex)); 
+          })
+      }
   }
-};
+}
+console.log(this.searchKey);
 
-
-
-const Product = {
-  template: '#product',
-  // data: function(){
-  //     return {product: findProduct(this.$route.params.product_id)};
-  // }
-};
-
-
-const HeaderComponent = {
-  template: `    
-    <header>
-      <div id="logo"><a href="#"><img src="./assets/img/wish-logo-800.png" alt=""></a></div>
-      <ul id="icons">
-        <li><i class="fas fa-user"></i></li>
-        <li>
-          <router-link :to="{name: 'WishList'}">
-            <i class="fas fa-heart"></i>
-          </router-link>
-        </li>
-        <li><i class="fas fa-shopping-cart"></i></li>
-      </ul>
-    </header>`,
-  name: 'HeaderComponent'
-};
 
 const WishList = {
-  template: 
-  `
-    <h1>Hello from wish list</h1>
-  `
+  template: '#wish-list',
+  name: 'WishList'
 };
+const ShoppingCart = {
+  template: '#shopping-cart',
+  name: 'ShoppingCart'
+}
 
 // router
 const router = new VueRouter({
   routes: [   
-    { path: '/', component: List },
-    { path: '/product' , component: Product, name: 'product' },
-    { path: '/wish-list', component: WishList }
+    { path: '/', component: Home, name:'Home' },
+    { path: '/wish-list', component: WishList, name:'WishList' },
+    { path: '/shopping-cart', component: ShoppingCart, name:'ShoppingCart'}
   ]
 })
 
-const app = new Vue({
+const vue = new Vue({
   router
-}).$mount('#app')
+}).$mount('#app');
