@@ -1,12 +1,12 @@
-### Fichier de base pour commencer un mini-projet 
+### Vue project
 
-Avec : 
-* des photos randoms
-* une navbar toute faite
-* un body tout fait
-* des sons
-* des svg
-* jQuery et Bootstrap reliés
+This project shows how to add Vue to a HTML page.
+ 
 
-#### Démarrer projet avec Sass 
+#### Start sass 
 * `npm run sass`
+
+
+##### To do :
+* Wish List
+* Shopping cart 

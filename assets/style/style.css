@@ -5,40 +5,62 @@
   box-sizing: border-box;
   list-style: none;
   font-family: "Ubuntu", sans-serif;
-  color: #222;
+  color: #333;
 }
 
 body {
-  max-width: 1100px;
   margin: 0 auto;
   background: rgba(254, 254, 254, 0.8);
 }
 
-header {
+h1 {
+  padding: 6rem 0 0 1rem;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1rem;
-  min-height: 60px;
+  padding: 0.8rem 2.4rem;
+  background: rgba(255, 255, 255, 0.97);
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 2px 4px -3px rgba(51, 51, 51, 0.2);
 }
-header #logo {
-  height: 35px;
+nav #logo {
+  height: 32px;
+  width: 66%;
 }
-header #logo img {
+nav #logo img {
   height: 100%;
 }
-header #icons {
+nav #icons {
   display: flex;
-  font-size: 2rem;
-  width: 400px;
+  font-size: 24px;
+  width: 34%;
   justify-content: space-around;
 }
-header #icons i {
-  transition: 0.1s;
+nav #icons a {
+  position: relative;
+}
+nav #icons .nav-notification {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: #ff2929;
+  position: absolute;
+  transform: translate(-4px, -1px);
+}
+nav #icons i {
+  transition: 0.25s;
   cursor: pointer;
 }
-header #icons i:hover {
-  color: rgba(34, 34, 34, 0.67);
+nav #icons i:hover {
+  color: rgba(34, 34, 34, 0.77);
+}
+
+.home-container {
+  max-width: 1100px;
 }
 
 .card-container {
