@@ -3,10 +3,10 @@
 This project shows how to add Vue to a HTML page.
  
 
-#### Start sass 
+#### Start Sass 
 * `npm run sass`
 
 
-##### To do :
+##### Left to do :
 * Wish List
 * Shopping cart 

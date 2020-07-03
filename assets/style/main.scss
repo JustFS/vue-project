@@ -12,6 +12,7 @@ body {
   background: rgba(254, 254, 254, 0.8);
   padding-bottom: 4rem;
   color: #333;
+  overflow-x: hidden;
 }
 h1 {
   padding: 6rem 0 0 2.4rem;
@@ -38,7 +39,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
+    max-width: 1050px;
     margin: 0 auto;
 
     #logo {
@@ -76,18 +77,28 @@ nav {
         cursor: pointer;
       }
       i:hover {
-        color: rgba(34, 34, 34, 0.77);
+        color: rgba(34, 34, 34, 0.65);
       }
     }
   }
 }
 
 .home-container {
-  max-width: 1100px;
+  max-width: 1250px;
   margin: 0 auto;
+  padding-left: 2.4rem;
+
+  @media screen and (max-width: 600px){
+    padding-left: .2rem;
+  }
+
+  h1 {
+    padding-left: 0;
+  }
+  
 
   #search {
-    margin: 1rem 1rem 2rem 2.4rem;
+    margin: 1rem 1rem 2rem 0;
     height: 2.4rem;
     padding: 0 0.5rem;
     border-radius: 5px;
@@ -101,25 +112,25 @@ nav {
   }
 
   .card-cart-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: "card";
-    position: relative;
+    display: flex;
 
     .card-container {
-      grid-area: card;
       display: flex;
       flex-wrap: wrap;
-      margin-left: 2rem;
 
       .card {
-        margin: 0.4rem;
+        margin: .4rem 1rem .4rem 0;
         background: rgb(255, 255, 255);
         border-radius: 4px;
         overflow: hidden;
         position: relative;
         box-shadow: 0 0px 6px rgba(51, 51, 51, 0.15);
         transition: 0.2s ease;
+        width: 202px;
+
+        @media screen and (max-width: 600px){
+          margin-right: .2rem;
+        }
 
         &:hover {
           transform: scale(1.04);
@@ -150,7 +161,7 @@ nav {
           position: absolute;
           bottom: 1rem;
           opacity: 0;
-          transition: 0.4s;
+          transition: 0.6s;
           width: 100%;
           height: 75px;
           background: linear-gradient(0deg, white 40%, transparent 100%);
@@ -179,7 +190,7 @@ nav {
             cursor: pointer;
 
             &:hover {
-              animation: scaler .5s infinite linear;
+              animation: scaler .8s infinite linear;
             }
           }
           .fa-heart:hover {
@@ -190,7 +201,7 @@ nav {
             color: #2eb7eb;
 
             &:hover {
-              filter: brightness(200%);
+              filter: brightness(125%);
             }
           }
           .like-container {
@@ -199,28 +210,42 @@ nav {
 
               &:checked + label i {
                 color: rgb(251, 38, 38);
+                animation: heart 1.3s forwards ease;
+
+                @keyframes heart {
+                  0% {
+                    filter:hue-rotate(0deg);
+                    transform: scale(1);
+                  }
+                  50% {
+                    filter:hue-rotate(-270deg);
+                    transform: scale(1.3);
+                  }
+                  100% {
+                    filter:hue-rotate(0deg);
+                    transform: scale(1);
+                  }
+                }
               }
             }
           }
         }
       }
       .no-result {
-        margin-left: 0.4rem;
+        margin: 0 4rem 0 0.4rem;
       }
     }
   }
   .shopping-cart {
-    grid-area: cart;
-    position: absolute;
-    top: 8rem;
-    right: 1rem;
     transition: 0.4s ease;
     background: #2eb7eb;
     color: white;
     padding: 1.4rem;
     border-radius: 4px;
-    min-width: 250px;
+    min-width: 260px;
     box-shadow: 0 1px 6px rgba(51, 51, 51, 0.25);
+    height: 100%;
+    margin: -7rem 2.4rem 0 0;
 
     h2 {
       margin-bottom: 1rem;
@@ -249,11 +274,14 @@ nav {
         align-items: flex-start;
 
         h4 {
-          margin: 0 2rem .9rem 0;
+          margin: 0 .9rem .9rem 0;
           background: rgba(51, 51, 51, 0.1);
           padding: 3px 5px;
           border-radius: 4px;
           box-shadow: 0 1px 1px rgba(51, 51, 51, 0.2);
+        }
+        p {
+          transform: translateY(3px);
         }
       }
       .item-quantity {
@@ -342,6 +370,7 @@ nav {
     &-enter-active,
     &-leave-active {
       transition: opacity 1.5s;
+      opacity: 1;
     }
     &-enter,
     &-leave-to {

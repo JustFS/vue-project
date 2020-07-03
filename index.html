@@ -8,9 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link rel="icon" href="./assets/img/vueLogo.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     />
     <link href="./assets/style/style.css" rel="stylesheet" />
   </head>
@@ -33,7 +31,7 @@
             </li>
             <li>
               <router-link to="/wish-list">
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart" id="bullet-heart"></i>
                 <span class="nav-notification"></span>
               </router-link>
             </li>
@@ -112,7 +110,8 @@
             <div v-if="cart.length > 0" class="shopping-cart">
               <h2>Panier</h2>
 
-                <div v-for="product, id in cart" class="item">
+              <transition-group name="item-anim" tag="div">
+                <div v-for="product, id in cart" class="item" v-bind:key="product.id">
 
                   <div class="item-description">
                     <h4>{{ product.description }}</h4>
@@ -135,6 +134,7 @@
                     </div>
                   </div>
                 </div>
+              </transition-group>
 
               <div class="grand-total">
                 <div class="total">
@@ -152,7 +152,7 @@
       </div>
     </script>
 
-    <script src="./assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
