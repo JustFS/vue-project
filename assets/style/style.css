@@ -5,45 +5,66 @@
   box-sizing: border-box;
   list-style: none;
   font-family: "Ubuntu", sans-serif;
-  color: #333;
 }
 
 body {
   margin: 0 auto;
   background: rgba(254, 254, 254, 0.8);
+  padding-bottom: 4rem;
+  color: #333;
 }
 
 h1 {
-  padding: 6rem 0 0 1rem;
+  padding: 6rem 0 0 2.4rem;
+}
+
+a,
+a:visited {
+  color: #333;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 0.8rem 2.4rem;
   background: rgba(255, 255, 255, 0.97);
   position: fixed;
   width: 100%;
+  z-index: 2;
   box-shadow: 0 2px 4px -3px rgba(51, 51, 51, 0.2);
 }
-nav #logo {
+nav .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+nav .nav-container #logo {
   height: 32px;
   width: 66%;
 }
-nav #logo img {
+nav .nav-container #logo img {
   height: 100%;
 }
-nav #icons {
+nav .nav-container #icons {
   display: flex;
   font-size: 24px;
   width: 34%;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
-nav #icons a {
+nav .nav-container #icons li {
+  margin-left: calc(35% + 8px);
+}
+nav .nav-container #icons li a {
   position: relative;
 }
-nav #icons .nav-notification {
+nav .nav-container #icons .nav-notification {
   height: 8px;
   width: 8px;
   border-radius: 50%;
@@ -51,27 +72,250 @@ nav #icons .nav-notification {
   position: absolute;
   transform: translate(-4px, -1px);
 }
-nav #icons i {
+nav .nav-container #icons i {
   transition: 0.25s;
   cursor: pointer;
 }
-nav #icons i:hover {
+nav .nav-container #icons i:hover {
   color: rgba(34, 34, 34, 0.77);
 }
 
 .home-container {
   max-width: 1100px;
+  margin: 0 auto;
 }
-
-.card-container {
+.home-container #search {
+  margin: 1rem 1rem 2rem 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  transition: 0.4s ease;
+  border: 2px solid rgba(51, 51, 51, 0.835);
+}
+.home-container #search:focus {
+  outline: none;
+  border: 2px solid #2eb7eb;
+}
+.home-container .card-cart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "card";
+  position: relative;
+}
+.home-container .card-cart-container .card-container {
+  grid-area: card;
   display: flex;
   flex-wrap: wrap;
+  margin-left: 2rem;
 }
-
-.shopping-cart {
-  position: fixed;
+.home-container .card-cart-container .card-container .card {
+  margin: 0.4rem;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0px 6px rgba(51, 51, 51, 0.15);
+  transition: 0.2s ease;
+}
+.home-container .card-cart-container .card-container .card:hover {
+  transform: scale(1.04);
+}
+.home-container .card-cart-container .card-container .card:hover img {
+  transform: scale(1.08);
+}
+.home-container .card-cart-container .card-container .card:hover .card-text {
+  opacity: 1;
+  bottom: 2.3rem;
+}
+.home-container .card-cart-container .card-container .card .img-container {
+  overflow: hidden;
+}
+.home-container .card-cart-container .card-container .card .img-container img {
+  height: 210px;
+  transition: 0.4s ease;
+}
+.home-container .card-cart-container .card-container .card .card-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 0.8rem;
+  position: absolute;
+  bottom: 1rem;
+  opacity: 0;
+  transition: 0.4s;
+  width: 100%;
+  height: 75px;
+  background: linear-gradient(0deg, white 40%, transparent 100%);
+}
+.home-container .card-cart-container .card-container .card .card-text h3 {
+  font-size: 1.2rem;
+  padding-right: 4px;
+}
+.home-container .card-cart-container .card-container .card .card-text span {
+  background: #2eb7eb;
+  font-weight: bold;
+  padding: 4px 6px;
+  color: white;
+  border-radius: 4px;
+}
+.home-container .card-cart-container .card-container .card .card-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+}
+.home-container .card-cart-container .card-container .card .card-icons i {
+  padding: 3px 5px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.home-container .card-cart-container .card-container .card .card-icons i:hover {
+  animation: scaler 0.5s infinite linear;
+}
+.home-container .card-cart-container .card-container .card .card-icons .fa-heart:hover {
+  color: rgba(251, 38, 38, 0.5);
+}
+.home-container .card-cart-container .card-container .card .card-icons .fa-shopping-cart {
+  font-size: 16px;
+  color: #2eb7eb;
+}
+.home-container .card-cart-container .card-container .card .card-icons .fa-shopping-cart:hover {
+  filter: brightness(200%);
+}
+.home-container .card-cart-container .card-container .card .card-icons .like-container input {
+  display: none;
+}
+.home-container .card-cart-container .card-container .card .card-icons .like-container input:checked + label i {
+  color: #fb2626;
+}
+.home-container .card-cart-container .card-container .no-result {
+  margin-left: 0.4rem;
+}
+.home-container .shopping-cart {
+  grid-area: cart;
+  position: absolute;
   top: 8rem;
   right: 1rem;
+  transition: 0.4s ease;
+  background: #2eb7eb;
+  color: white;
+  padding: 1.4rem;
+  border-radius: 4px;
+  min-width: 250px;
+  box-shadow: 0 1px 6px rgba(51, 51, 51, 0.25);
+}
+.home-container .shopping-cart h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+.home-container .shopping-cart .item {
+  margin-bottom: 2.4rem;
+  position: relative;
+}
+.home-container .shopping-cart .item:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background: rgba(85, 85, 85, 0.2);
+  left: 50%;
+  bottom: -22px;
+  transform: translateX(-50%);
+}
+.home-container .shopping-cart .item .item-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.home-container .shopping-cart .item .item-description h4 {
+  margin: 0 2rem 0.9rem 0;
+  background: rgba(51, 51, 51, 0.1);
+  padding: 3px 5px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(51, 51, 51, 0.2);
+}
+.home-container .shopping-cart .item .item-quantity {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.home-container .shopping-cart .item .item-quantity h6 {
+  color: #333;
+}
+.home-container .shopping-cart .item .item-quantity .cart-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  margin-left: 10px;
+}
+.home-container .shopping-cart .item .item-quantity .cart-icons i {
+  font-size: 0.55rem;
+  padding: 5px;
+  background: white;
+  border-radius: 50%;
+  color: #2eb7eb;
+}
+.home-container .shopping-cart .item .item-quantity .cart-icons i:hover {
+  animation: scaler 2s infinite linear;
+  background: black;
+  color: #2eb7eb;
+}
+.home-container .shopping-cart .grand-total h6 {
+  color: #333;
+}
+.home-container .shopping-cart .grand-total .total {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem 0 0.4rem;
+}
+.home-container .shopping-cart .grand-total .total h2 {
+  color: white;
+  margin-bottom: 0;
+}
+.home-container .shopping-cart .order-button {
+  margin: 1rem auto 0;
+  width: 100%;
+  text-align: center;
+}
+.home-container .shopping-cart .order-button button {
+  background: white;
+  padding: 0.8rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(51, 51, 51, 0.2);
+  transition: all 0.2s ease;
+}
+.home-container .shopping-cart .order-button button:hover {
+  background: black;
+  color: #2eb7eb;
+  font-weight: bold;
+  animation: scaler 1.5s infinite linear;
+}
+.home-container .shopping-cart .order-button button:active {
+  transform: scale(0.5);
+}
+.home-container .cart-anim-enter-active, .home-container .cart-anim-leave-active {
+  transition: 0.8s;
+  transform: translateX(0px);
+}
+.home-container .cart-anim-enter, .home-container .cart-anim-leave-to {
+  opacity: 0;
+  transform: translateX(300px);
+}
+.home-container .item-anim-enter-active, .home-container .item-anim-leave-active {
+  transition: opacity 1.5s;
+}
+.home-container .item-anim-enter, .home-container .item-anim-leave-to {
+  opacity: 0;
+}
+
+@keyframes scaler {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
