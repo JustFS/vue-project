@@ -462,10 +462,12 @@ nav {
       opacity: 1;
       transition: .8s;
     }
-    &-enter,
+    &-enter {
+    opacity: 0;
+    }
     &-leave-to {
       opacity: 0;
-      transform: translateY(100px);
+      transform: translateY(-50px);
       transition: .7s;
     }
   }
