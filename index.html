@@ -31,14 +31,14 @@
             </li>
             <li>
               <router-link to="/wish-list">
-                <i class="fas fa-heart" id="bullet-heart"></i>
-                <span class="nav-notification"></span>
+                <i class="fas fa-heart"></i>
+                <span id="nav-not"></span>
               </router-link>
             </li>
             <li>
               <router-link to="/shopping-cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="nav-notification"></span>
+                <span></span>
               </router-link>
             </li>
           </ul>
@@ -54,7 +54,7 @@
         <h1>Articles</h1>
 
         <!-- search display -->
-        <input v-model="searchKey" id="search" type="search" placeholder="Rechercher...">
+        <input v-model="searchKey" id="search" type="search" placeholder="Rechercher..." autocomplete="off">
         <span v-if="searchKey && filteredList.length >= 1 ">
           {{filteredList.length}} resultat<span v-if="filteredList.length >= 2">s</span>
         </span>
@@ -79,7 +79,6 @@
                     type="checkbox"
                     :value=product.id
                     name="checkbox"
-                    class="checkbox"
                     v-bind:id="product.id"
                     v-model="liked"
                     @click="setLikeCookie()"
@@ -107,11 +106,15 @@
 
           <!-- cart display -->
           <transition name="cart-anim">
-            <div v-if="cart.length > 0" class="shopping-cart">
+            <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
               <h2>Panier</h2>
 
-              <transition-group name="item-anim" tag="div">
+              <transition-group name="item-anim" tag="div" class="item-group">
                 <div v-for="product, id in cart" class="item" v-bind:key="product.id">
+
+                  <div class="img-container">
+                    <img v-bind:src='product.img' />
+                  </div>
 
                   <div class="item-description">
                     <h4>{{ product.description }}</h4>

@@ -65,12 +65,15 @@ nav .nav-container #icons li {
 nav .nav-container #icons li a {
   position: relative;
 }
-nav .nav-container #icons .nav-notification {
+nav .nav-container #icons #nav-not {
   height: 8px;
   width: 8px;
   border-radius: 50%;
   background: #ff2929;
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
   transform: translate(-4px, -1px);
 }
 nav .nav-container #icons i {
@@ -223,21 +226,34 @@ nav .nav-container #icons i:hover {
   color: white;
   padding: 1.4rem;
   border-radius: 4px;
-  min-width: 260px;
+  min-width: 290px;
   box-shadow: 0 1px 6px rgba(51, 51, 51, 0.25);
   height: 100%;
-  margin: -7rem 2.4rem 0 0;
+  margin: -8rem 2.4rem 0 0;
 }
 .home-container .shopping-cart h2 {
   margin-bottom: 1rem;
   color: #333;
   text-align: center;
 }
-.home-container .shopping-cart .item {
+.home-container .shopping-cart .item-group {
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+.home-container .shopping-cart .item-group::-webkit-scrollbar {
+  display: none;
+}
+.home-container .shopping-cart .item-group .item {
   margin-bottom: 2.4rem;
   position: relative;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 60% 40%;
+  grid-template-areas: "a b" "a c";
 }
-.home-container .shopping-cart .item:after {
+.home-container .shopping-cart .item-group .item:after {
   content: "";
   position: absolute;
   height: 1px;
@@ -247,45 +263,105 @@ nav .nav-container #icons i:hover {
   bottom: -22px;
   transform: translateX(-50%);
 }
-.home-container .shopping-cart .item .item-description {
+.home-container .shopping-cart .item-group .item .img-container {
+  grid-area: a;
+  display: flex;
+  align-items: center;
+}
+.home-container .shopping-cart .item-group .item .img-container img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: img-scale 1s forwards;
+}
+@keyframes img-scale {
+  to {
+    transform: scale(1);
+  }
+}
+.home-container .shopping-cart .item-group .item .item-description {
+  grid-area: b;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-left: 10px;
 }
-.home-container .shopping-cart .item .item-description h4 {
+.home-container .shopping-cart .item-group .item .item-description h4 {
   margin: 0 0.9rem 0.9rem 0;
   background: rgba(51, 51, 51, 0.1);
   padding: 3px 5px;
   border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(51, 51, 51, 0.2);
+  box-shadow: 0 1px 1px rgba(51, 51, 51, 0.15);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: img-scale 1s forwards;
 }
-.home-container .shopping-cart .item .item-description p {
+@keyframes img-scale {
+  to {
+    transform: scaleX(1);
+  }
+}
+.home-container .shopping-cart .item-group .item .item-description p {
   transform: translateY(3px);
 }
-.home-container .shopping-cart .item .item-quantity {
+.home-container .shopping-cart .item-group .item .item-quantity {
+  grid-area: c;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-left: 10px;
 }
-.home-container .shopping-cart .item .item-quantity h6 {
+.home-container .shopping-cart .item-group .item .item-quantity h6 {
   color: #333;
 }
-.home-container .shopping-cart .item .item-quantity .cart-icons {
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons {
   display: flex;
   justify-content: space-between;
   width: 30%;
   margin-left: 10px;
 }
-.home-container .shopping-cart .item .item-quantity .cart-icons i {
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons button {
+  transform: scaleY(0);
+}
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons button:nth-child(1) {
+  animation: icon 0.5s ease forwards;
+  animation-delay: 0.2s;
+}
+@keyframes icon {
+  to {
+    transform: scaleY(1);
+  }
+}
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons button:nth-child(2) {
+  animation: icon 0.5s ease forwards;
+  animation-delay: 0.4s;
+}
+@keyframes icon {
+  to {
+    transform: scaleY(1);
+  }
+}
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons button:nth-child(3) {
+  animation: icon 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+@keyframes icon {
+  to {
+    transform: scaleY(1);
+  }
+}
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons i {
   font-size: 0.55rem;
   padding: 5px;
+  margin: 0 2px;
   background: white;
   border-radius: 50%;
   color: #2eb7eb;
+  transition: 0.3s ease;
 }
-.home-container .shopping-cart .item .item-quantity .cart-icons i:hover {
-  animation: scaler 2s infinite linear;
-  background: black;
+.home-container .shopping-cart .item-group .item .item-quantity .cart-icons i:hover {
+  background: #222;
   color: #2eb7eb;
 }
 .home-container .shopping-cart .grand-total h6 {
@@ -311,30 +387,34 @@ nav .nav-container #icons i:hover {
   border-radius: 4px;
   box-shadow: 0 1px 6px rgba(51, 51, 51, 0.2);
   transition: all 0.2s ease;
+  letter-spacing: 1px;
 }
 .home-container .shopping-cart .order-button button:hover {
   background: black;
   color: #2eb7eb;
   font-weight: bold;
+  letter-spacing: 6px;
   animation: scaler 1.5s infinite linear;
 }
 .home-container .shopping-cart .order-button button:active {
-  transform: scale(0.5);
+  transform: scale(0.92);
 }
 .home-container .cart-anim-enter-active, .home-container .cart-anim-leave-active {
-  transition: 0.8s;
+  transition: 1.3s cubic-bezier(0.23, 0.66, 0.08, 0.93);
   transform: translateX(0px);
 }
 .home-container .cart-anim-enter, .home-container .cart-anim-leave-to {
   opacity: 0;
-  transform: translateX(300px);
+  transform: translateX(400px);
 }
 .home-container .item-anim-enter-active, .home-container .item-anim-leave-active {
-  transition: opacity 1.5s;
   opacity: 1;
+  transition: 0.8s;
 }
 .home-container .item-anim-enter, .home-container .item-anim-leave-to {
   opacity: 0;
+  transform: translateY(100px);
+  transition: 0.7s;
 }
 
 @keyframes scaler {

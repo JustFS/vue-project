@@ -70,6 +70,7 @@ const Home = {
       }
       this.cart.push({
         id: product.id,
+        img: product.img,
         description: product.description,
         price: product.price,
         quantity: 1
@@ -117,7 +118,6 @@ const router = new VueRouter({
   ]
 })
 
-// new instance
 const vue = new Vue({
   router
 }).$mount('#app');
