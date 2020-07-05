@@ -411,9 +411,12 @@ nav .nav-container #icons i:hover {
   opacity: 1;
   transition: 0.8s;
 }
-.home-container .item-anim-enter, .home-container .item-anim-leave-to {
+.home-container .item-anim-enter {
   opacity: 0;
-  transform: translateY(100px);
+}
+.home-container .item-anim-leave-to {
+  opacity: 0;
+  transform: translateY(-50px);
   transition: 0.7s;
 }
 
