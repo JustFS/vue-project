@@ -55,9 +55,7 @@ const Home = {
     setLikeCookie() {
       document.addEventListener('input', () => {
         setTimeout(() => {
-          let cookieValue = this.liked;
-          cookieValue = JSON.stringify(cookieValue)
-          $cookies.set('like', cookieValue); 
+          $cookies.set('like', JSON.stringify(this.liked)); 
         }, 300);
       })
     },
