@@ -459,16 +459,15 @@ nav {
   .item-anim {
     &-enter-active, 
     &-leave-active {
-      opacity: 1;
+      transform: scale(1);
       transition: .8s;
     }
     &-enter {
-    opacity: 0;
+      transition: .8s
     }
     &-leave-to {
-      opacity: 0;
-      transform: translateY(-50px);
-      transition: .7s;
+      transform: scale(0);
+      transition: .4s;
     }
   }
 }
